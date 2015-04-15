@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('dispo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'mgcrea.ngStrap', 'uiGmapgoogle-maps'])
-.config(function ($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+angular.module('dispo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'mgcrea.ngStrap', 'ngMap'])
+.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home', {
         url: '/',
@@ -10,10 +10,5 @@ angular.module('dispo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.
     });
 
     $urlRouterProvider.otherwise('/');
-
-    uiGmapGoogleMapApiProvider.configure({
-        v: 3.17,
-        libraries: 'weather, geometry, visualization'
-    });
 })
 ;

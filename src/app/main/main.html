@@ -1,34 +1,57 @@
 <div ng-controller="mapController">
 
-    <ui-gmap-google-map pan="true" center='map.center' zoom='map.zoom' options="map.options">
-        <ui-gmap-polygon
-            ng-repeat="site in sites"
-            path='site.polygon'
-            fill='black'
-            stroke='true'
-            clickable='false'
-            draggable='false'
-            editable='false'
-            visible='true'
-            opacity='.2'
-            events='true'>
-        </ui-gmap-polygon>
-    </ui-gmap-google-map>
+    <map zoom="8"
+      zoom-control="true"
+      center="[56.54, -115.867]"
+      disable-default-u-i="true"
+      disable-double-click-zoom="true"
+      draggable="true"
+      draggable-cursor="help"
+      dragging-cursor="move"
+      keyboard-shortcuts="false"
+      max-zoom="17"
+      min-zoom="2"
+      tilt="45"
+      map-type-id="SATELLITE">
+
+        <shape ng-repeat="site in sites" id="polygon" name="polygon"
+        stroke-color="black" stroke-opacity=".7" stroke-weight="1"
+        paths="{{ site.polygon }}">
+        </shape>
+
+    </map>
+
+    <div class="search-wrapper container">
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Search</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </div>
+
+        </form>
+    </div>
 
     <table class="table table-hover">
         <tr>
+            <th></th>
             <th>Name</th>
             <th>Location</th>
             <th>Size</th>
             <th>Elevation</th>
             <th>Area</th>
+            <th></th>
         </tr>
-        <tr ng-repeat="site in sites" ng-click="panMap()">{{ site.name }}
+        <tr ng-repeat="site in sites" ng-click="panMap(site.polygon[0][0], site.polygon[0][1])">{{ site.name }}
+            <td></td>
             <td>{{ site.name }}</td>
             <td>{{ site.location }}</td>
             <td>{{ site.size }}</td>
             <td>{{ site.elevation }}</td>
             <td>{{ site.area }}</td>
+            <td><button type="submit" class="btn btn-primary">Submit</button></td>
         </tr>
     </table>
 </div>
