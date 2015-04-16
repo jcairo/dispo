@@ -1,6 +1,6 @@
 <div ng-controller="mapController">
 
-    <map zoom="8"
+    <map zoom="9"
       zoom-control="true"
       center="[56.54, -115.867]"
       disable-default-u-i="true"
@@ -14,8 +14,8 @@
       tilt="45"
       map-type-id="SATELLITE">
 
-        <shape ng-repeat="site in sites" id="polygon" name="polygon"
-        stroke-color="black" stroke-opacity=".7" stroke-weight="1"
+        <shape ng-repeat="site in sites | filter: search" id="polygon" name="polygon"
+        stroke-color="lightblue" stroke-opacity=".7" stroke-weight="1"
         paths="{{ site.polygon }}">
         </shape>
 
@@ -25,9 +25,8 @@
         <form class="form-horizontal">
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">Search</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" placeholder="Search">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
                 </div>
             </div>
 
@@ -43,15 +42,19 @@
             <th>Elevation</th>
             <th>Area</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
-        <tr ng-repeat="site in sites" ng-click="panMap(site.polygon[0][0], site.polygon[0][1])">{{ site.name }}
+        <tr ng-repeat="site in sites | filter: search" ng-click="panMap(site.polygon[0][0], site.polygon[0][1])">{{ site.name }}
             <td></td>
             <td>{{ site.name }}</td>
             <td>{{ site.location }}</td>
             <td>{{ site.size }}</td>
             <td>{{ site.elevation }}</td>
             <td>{{ site.area }}</td>
-            <td><button type="submit" class="btn btn-primary">Submit</button></td>
+            <td><button class="btn btn-info" ng-click="panMap()">Show</button></td>
+            <td><button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button></td>
+            <td></td>
         </tr>
     </table>
 </div>

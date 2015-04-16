@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dispo')
-.controller('mapController', function($scope, mockData) {
+.controller('mapController', function($scope, $timeout, mockData) {
     var map;
 
     $scope.$on('mapInitialized', function(event, mapInstance) {
@@ -17,7 +17,14 @@ angular.module('dispo')
     };
 
     $scope.panMap = function(lat, lon) {
-        map.panTo({lat: lat, lng:lon});
-        map.setZoom(10);
+        $timeout( function () {
+            map.setZoom(8);
+        }, 250);
+        $timeout( function () {
+            map.setZoom(7);
+        }, 500);
+        $timeout( function () {
+            map.panTo({lat: lat, lng:lon});
+        }, 750);
     };
 });

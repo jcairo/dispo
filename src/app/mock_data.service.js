@@ -15,7 +15,7 @@ angular.module('dispo')
                     [58.93, -118.35777283],
                     [58.92, -118.31],
                 ],
-                elevation: '800',
+                elevation: '800m',
                 area: '10km',
             },
             {
