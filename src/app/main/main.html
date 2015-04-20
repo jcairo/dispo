@@ -1,6 +1,6 @@
 <div ng-controller="mapController">
 
-    <map zoom="9"
+    <map zoom="11"
       zoom-control="true"
       center="[56.54, -115.867]"
       disable-default-u-i="true"
@@ -12,10 +12,11 @@
       max-zoom="17"
       min-zoom="2"
       tilt="45"
-      map-type-id="SATELLITE">
+      map-type-id="SATELLITE"
+      height="400px">
 
         <shape ng-repeat="site in sites | filter: search" id="polygon" name="polygon"
-        stroke-color="lightblue" stroke-opacity=".7" stroke-weight="1"
+        stroke-color="lightblue" stroke-opacity=".7" stroke-weight="2"
         paths="{{ site.polygon }}">
         </shape>
 
@@ -41,13 +42,13 @@
             <th>Size</th>
             <th>Elevation</th>
             <th>Area</th>
-            <th></th>
-            <th></th>
+            <th style="text-align: center;">View</th>
+            <th style="text-align: center;">Dispose</th>
             <th></th>
         </tr>
         <tr ng-repeat="site in sites | filter: search" ng-click="panMap(site.polygon[0][0], site.polygon[0][1])">{{ site.name }}
             <td></td>
-            <td>{{ site.name }}</td>
+            <td style="text-decoration: underline;">{{ site.name }}</td>
             <td>{{ site.location }}</td>
             <td>{{ site.size }}</td>
             <td>{{ site.elevation }}</td>
